@@ -35,7 +35,7 @@ func (s *Storage) Init() error {
 }
 
 func (s *Storage) Insert(key string, value interface{}, expire time.Duration) error {
-	_=Init()
+	_=s.Init()
 	_, err := s.Client.Set(key, value, expire).Result()
 	if err != nil {
 		log.Println(err)
