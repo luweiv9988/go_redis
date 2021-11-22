@@ -67,6 +67,19 @@ func (s *Storage) Getkeys(key ...string) interface{} {
 	return dataList
 }
 
+func (s *Storage) GetAllKeys() interface{} {
+
+	_ = s.Init()
+
+	result, err := s.Client.Do("keys", "*").Result()
+	if err != nil {
+		log.Print(err)
+		os.Exit(-1)
+	}
+	return result
+
+}
+
 func (s *Storage) Exists(key string) int64 {
 
 	_ = s.Init()
